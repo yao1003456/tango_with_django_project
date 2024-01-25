@@ -17,33 +17,18 @@ def populate():
     other_pages = [{'title':'Bottle', 'url':'http://bottlepy.org/docs/dev/'},
                     {'title':'Flask', 'url':'http://flask.pocoo.org'}]
     
-    cats = {'Python': {'pages': python_pages},
-            'Django': {'pages': django_pages},
-            'Other Frameworks': {'pages': other_pages}}
+    cats = {'Python': {'pages': python_pages, 'views':128, 'likes':64},
+            'Django': {'pages': django_pages, 'views':64, 'likes':32},
+            'Other Frameworks': {'pages': other_pages, 'views':32, 'likes':16}}
     
     for cat, cat_data in cats.items():
-        for c in cats['Python']:
-            c = add_cat(cat, 128, 64)
-            
-        for c in cats['Django']:
-            c = add_cat(cat, 64, 32)
-
+        c = add_cat(cat, views=cat_data['views'], likes=cat_data['likes'])
         for p in cat_data['pages']:
             add_page(c, p['title'], p['url'])
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
             print(f'- {c}: {p}')
-
-#     for cat, cat_data in cats.items():
-#         c = add_cat(cat)
-#         for p in cat_data['pages']:
-#             add_page(c, p['title'], p['url'])
-
-# # Print out the categories we have added.
-#     for c in Category.objects.all():
-#         for p in Page.objects.filter(category=c):
-#             print(f'- {c}: {p}')
 
 def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
