@@ -21,28 +21,29 @@ def populate():
             'Django': {'pages': django_pages},
             'Other Frameworks': {'pages': other_pages}}
     
-    # for cat, cat_data in cats.items():
-    #     for c in cats['Python']:
-    #         c = add_cat(cat, 128, 64)
-    #     for c in cats['Django']:
-    #         c = add_cat(cat, 64, 32)
-
-    #     for p in cat_data['pages']:
-    #         add_page(c, p['title'], p['url'])
-
-    # for c in Category.objects.all():
-    #     for p in Page.objects.filter(category=c):
-    #         print(f'- {c}: {p}')
-
     for cat, cat_data in cats.items():
-        c = add_cat(cat)
+        for c in cats['Python']:
+            c = add_cat(cat, 128, 64)
+            
+        for c in cats['Django']:
+            c = add_cat(cat, 64, 32)
+
         for p in cat_data['pages']:
             add_page(c, p['title'], p['url'])
 
-# Print out the categories we have added.
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
             print(f'- {c}: {p}')
+
+#     for cat, cat_data in cats.items():
+#         c = add_cat(cat)
+#         for p in cat_data['pages']:
+#             add_page(c, p['title'], p['url'])
+
+# # Print out the categories we have added.
+#     for c in Category.objects.all():
+#         for p in Page.objects.filter(category=c):
+#             print(f'- {c}: {p}')
 
 def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
@@ -51,8 +52,10 @@ def add_page(cat, title, url, views=0):
     p.save()
     return p
 
-def add_cat(name):
+def add_cat(name, views, likes):
     c=Category.objects.get_or_create(name=name)[0]
+    c.views = views
+    c.likes = likes
     c.save()
     return c
 
