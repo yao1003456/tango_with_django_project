@@ -22,7 +22,7 @@ def show_category(request, category_name_slug):
     try: 
         category = Category.objects.get(slug=category_name_slug)
 
-        pages = Page.objects.filter(category=Category)
+        pages = Page.objects.filter(category=category)
 
         context_dict['pages'] = pages
 
@@ -31,5 +31,5 @@ def show_category(request, category_name_slug):
     except Category.DoesNotExist:
         context_dict['category'] = None
         context_dict['pages'] = None
-
+        
     return render(request, 'rango/category.html', context=context_dict)
