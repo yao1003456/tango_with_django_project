@@ -6,16 +6,16 @@ django.setup()
 from rango.models import Category, Page
 
 def populate():
-    python_pages = [{'title':'Official Python Tutorial', 'url':'http://docs.python.org/3/tutorial/', 'views':23},
-                     {'title':'How to Think like a Computer Scientist', 'url':'http://www.greenteapress.com/thinkpython/', 'views':23},
-                      {'title':'Learn Python in 10 Minutes', 'url':'http://www.korokithakis.net/tutorials/python/', 'views':23}]
+    python_pages = [{'title':'Official Python Tutorial', 'url':'http://docs.python.org/3/tutorial/', 'views':53},
+                     {'title':'How to Think like a Computer Scientist', 'url':'http://www.greenteapress.com/thinkpython/', 'views':33},
+                      {'title':'Learn Python in 10 Minutes', 'url':'http://www.korokithakis.net/tutorials/python/', 'views':28}]
     
     django_pages = [{'title':'Official Django Tutorial', 'url':'https://docs.djangoproject.com/en/2.1/intro/tutorial01/', 'views':23},
-                     {'title':'Django Rocks', 'url':'http://www.djangorocks.com/', 'views':23},
-                      {'title':'How to Tango with Django','url':'http://www.tangowithdjango.com/', 'views':23}]
+                     {'title':'Django Rocks', 'url':'http://www.djangorocks.com/', 'views':13},
+                      {'title':'How to Tango with Django','url':'http://www.tangowithdjango.com/', 'views':43}]
     
-    other_pages = [{'title':'Bottle', 'url':'http://bottlepy.org/docs/dev/', 'views':23},
-                    {'title':'Flask', 'url':'http://flask.pocoo.org', 'views':23}]
+    other_pages = [{'title':'Bottle', 'url':'http://bottlepy.org/docs/dev/', 'views':30},
+                    {'title':'Flask', 'url':'http://flask.pocoo.org', 'views':25}]
     
     cats = {'Python': {'pages': python_pages, 'views':128, 'likes':64},
             'Django': {'pages': django_pages, 'views':64, 'likes':32},
