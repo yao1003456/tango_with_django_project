@@ -34,14 +34,3 @@ def show_category(request, category_name_slug):
         
     return render(request, 'rango/category.html', context=context_dict)
 
-def show_page(request, page_title_slug):
-    context_dict = {}
-
-    try: 
-        pages = Page.objects.get(slug=page_title_slug)
-        context_dict['pages'] = pages
-
-    except Page.DoesNotExist:
-        context_dict['pages'] = None
-        
-    return render(request, 'rango/page.html', context=context_dict)
