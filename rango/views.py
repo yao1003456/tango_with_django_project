@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from rango.forms import CategoryForm, PageForm
 from rango.models import Category
@@ -16,9 +15,11 @@ def index(request):
 
     return render(request, 'rango/index.html', context=context_dict)
 
+
 def about(request):
     context_dict = {'boldmessage': 'yao'}
     return render(request, 'rango/about.html', context=context_dict)
+
 
 def show_category(request, category_name_slug):
     context_dict = {}
@@ -35,11 +36,13 @@ def show_category(request, category_name_slug):
         
     return render(request, 'rango/category.html', context=context_dict)
 
+
 def add_category(request):
     form = CategoryForm(request.POST)
 
     if request.method == 'POST':
         form = CategoryForm(request.POST)
+        print(form)
 
         if form.is_valid():
             form.save(commit=True)
@@ -48,6 +51,7 @@ def add_category(request):
             print(form.errors)
 
     return render(request, 'rango/add_category.html', {'form': form})
+
 
 def add_page(request, category_name_slug):
     try:
